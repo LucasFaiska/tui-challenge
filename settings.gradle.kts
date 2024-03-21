@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tui Challenge"
 include(":app")
- 
