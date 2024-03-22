@@ -13,6 +13,8 @@ object Configuration {
     const val versionName = "1.0"
 
     const val applicationId = "com.tui.challenge"
+    const val applicationNameSpace = "com.tui.challenge"
+    const val dataModuleNameSpace = "com.tui.challenge.data"
 }
 
 object Plugins {
@@ -30,6 +32,11 @@ object Plugins {
     object KotlinJvm {
         const val id = "org.jetbrains.kotlin.jvm"
         const val version = "1.9.22"
+    }
+
+    object AndroidLibrary {
+        const val id = "com.android.library"
+        const val version = "8.2.2"
     }
 }
 
