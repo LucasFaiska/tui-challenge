@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.AndroidLibrary.id)
     id(Plugins.KotlinAndroid.id)
+    id(Plugins.Kapt.id)
 }
 
 android {
@@ -27,8 +28,14 @@ android {
     kotlinOptions {
         jvmTarget = Configuration.jvmTarget
     }
+
+    android.buildFeatures.buildConfig = true
 }
 
 dependencies {
 
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.gsonConverter)
+    implementation(Dependencies.Hilt.hilt)
+    kapt(Dependencies.Hilt.hiltCompiler)
 }
