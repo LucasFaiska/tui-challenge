@@ -38,4 +38,8 @@ dependencies {
     implementation(Dependencies.Retrofit.gsonConverter)
     implementation(Dependencies.Hilt.hilt)
     kapt(Dependencies.Hilt.hiltCompiler)
+
+    testImplementation(Dependencies.Test.junit)
+    testImplementation(Dependencies.Test.junitExt)
+    testImplementation(Dependencies.OkHttp.mockWebServer)
 }

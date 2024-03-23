@@ -75,4 +75,9 @@ object Dependencies {
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$version"
     }
+
+    object OkHttp {
+        private const val version = "4.12.0"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
+    }
 }

@@ -3,6 +3,7 @@ package com.tui.data.di
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.tui.data.source.remote.CodewarsApi
 import com.tui.data.source.remote.core.NetworkResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -45,6 +46,10 @@ object NetworkModule {
             .build()
     }
 
-    private const val TIMEOUT = 30L
-    private const val BASE_URL = "https://api.codewars.com/api/v1/"
+    @Provides
+    @Singleton
+    fun provideCodewarsApi(retrofit: Retrofit): CodewarsApi = retrofit.create(CodewarsApi::class.java)
+
+    const val TIMEOUT = 30L
+    const val BASE_URL = "https://api.codewars.com/api/v1/"
 }
