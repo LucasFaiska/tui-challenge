@@ -15,12 +15,7 @@ object Configuration {
     const val applicationId = "com.tui.challenge"
     const val applicationNameSpace = "com.tui.challenge"
     const val dataModuleNameSpace = "com.tui.challenge.data"
-}
-
-object ClassPaths {
-    const val androidTools = "com.android.tools.build:gradle:7.4.2"
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
-    const val hilt = "com.google.dagger:hilt-android-gradle-plugin:2.51"
+    const val domainModuleNameSpace = "com.tui.challenge.domain"
 }
 
 object Plugins {
@@ -62,6 +57,7 @@ object Dependencies {
         const val junit = "junit:junit:4.13.2"
         const val junitExt = "androidx.test.ext:junit:1.1.5"
         const val espressoCore = "androidx.test.espresso:espresso-core:3.5.1"
+        const val mockk = "io.mockk:mockk:1.13.10"
     }
 
     object Retrofit {
@@ -78,6 +74,11 @@ object Dependencies {
 
     object OkHttp {
         private const val version = "4.12.0"
+        const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
+    }
+
+    object Coroutines {
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
     }
 }

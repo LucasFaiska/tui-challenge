@@ -1,11 +1,10 @@
 plugins {
     id(Plugins.AndroidLibrary.id)
     id(Plugins.KotlinAndroid.id)
-    id(Plugins.Kapt.id)
 }
 
 android {
-    namespace = Configuration.dataModuleNameSpace
+    namespace = Configuration.domainModuleNameSpace
     compileSdk = Configuration.compileSdk
 
     defaultConfig {
@@ -28,19 +27,13 @@ android {
     kotlinOptions {
         jvmTarget = Configuration.jvmTarget
     }
-
-    android.buildFeatures.buildConfig = true
 }
 
 dependencies {
 
-    implementation(Dependencies.OkHttp.okhttp)
-    implementation(Dependencies.Retrofit.retrofit)
-    implementation(Dependencies.Retrofit.gsonConverter)
-    implementation(Dependencies.Hilt.hilt)
-    kapt(Dependencies.Hilt.hiltCompiler)
+    implementation(Dependencies.Coroutines.core)
 
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.junitExt)
-    testImplementation(Dependencies.OkHttp.mockWebServer)
+    testImplementation(Dependencies.Test.mockk)
 }

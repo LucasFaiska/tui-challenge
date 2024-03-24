@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Tui Challenge"
 include(":app")
 include(":data")
+include(":domain")
