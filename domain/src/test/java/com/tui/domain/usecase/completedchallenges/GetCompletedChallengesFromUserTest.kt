@@ -1,6 +1,5 @@
 package com.tui.domain.usecase.completedchallenges
 
-import com.tui.domain.model.PageListData
 import com.tui.domain.repository.ChallengeRepository
 import com.tui.domain.repository.RepositoryResult
 import com.tui.domain.utils.Mocks.Companion.completedChallengesMock
@@ -36,7 +35,9 @@ class GetCompletedChallengesFromUserTest {
             val username = "username"
             val page = 1
             val completedChallenges = completedChallengesMock
-            coEvery { repository.getCompletedChallenges(username, page) } returns RepositoryResult.Success(completedChallenges)
+            coEvery { repository.getCompletedChallenges(username, page) } returns RepositoryResult.Success(
+                completedChallenges
+            )
             val result = useCase.execute(username, page)
             assert(result is GetCompletedChallengesFromUserResult.Success)
             assert((result as GetCompletedChallengesFromUserResult.Success).data == completedChallenges)
@@ -46,7 +47,7 @@ class GetCompletedChallengesFromUserTest {
     fun `Given the repository returns an error, When the use case is invoked, Then return Error`() = runBlocking {
         val username = "username"
         val page = 1
-        coEvery { repository.getCompletedChallenges(username, page) } returns RepositoryResult.Error(Exception())
+        coEvery { repository.getCompletedChallenges(username, page) } returns RepositoryResult.Error
         val result = useCase.execute(username, page)
         assert(result is GetCompletedChallengesFromUserResult.Error)
     }

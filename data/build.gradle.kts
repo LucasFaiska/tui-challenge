@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
 
     implementation(Dependencies.OkHttp.okhttp)
     implementation(Dependencies.Retrofit.retrofit)
@@ -43,4 +44,5 @@ dependencies {
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.junitExt)
     testImplementation(Dependencies.OkHttp.mockWebServer)
+    testImplementation(Dependencies.Test.mockk)
 }

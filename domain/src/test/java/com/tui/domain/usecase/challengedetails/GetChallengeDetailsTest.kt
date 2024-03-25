@@ -7,10 +7,9 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import kotlinx.coroutines.runBlocking
-import java.lang.Exception
 
 
 class GetChallengeDetailsTest {
@@ -48,7 +47,7 @@ class GetChallengeDetailsTest {
     fun `Given the repository returns an error, When the use case is invoked, Then return Error`() {
         runBlocking {
             val challengeId = "challengeId"
-            coEvery { repository.getChallengeDetails(challengeId) } returns RepositoryResult.Error(Exception())
+            coEvery { repository.getChallengeDetails(challengeId) } returns RepositoryResult.Error
             val result = useCase.invoke(challengeId)
             assertEquals(GetChallengeDetailsResult.Error, result)
         }
