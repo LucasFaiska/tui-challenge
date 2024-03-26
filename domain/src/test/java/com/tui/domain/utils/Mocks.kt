@@ -18,7 +18,7 @@ class Mocks {
                     id = "514b92a657cdc65150000006",
                     name = "Multiples of 3 and 5",
                     slug = "multiples-of-3-and-5",
-                    completedAt = Utils.stringToDate("2017-04-06T16:32:09Z"),
+                    completedAt = "06/04/2017 17:32:09",
                     completedLanguages = listOf(
                         "javascript",
                         "coffeescript",
