@@ -2,6 +2,7 @@ plugins {
     id(Plugins.AndroidApplication.id)
     id(Plugins.KotlinAndroid.id)
     id(Plugins.Kapt.id)
+    id(Plugins.Hilt.id)
 }
 
 android {
@@ -31,18 +32,28 @@ android {
     kotlinOptions {
         jvmTarget = Configuration.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
 }
 
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    implementation(Dependencies.AndroidX.coreKtx)
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.AndroidX.material)
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    implementation(Dependencies.Compose.material)
+    implementation(Dependencies.ComposeNavigation.navigation)
+    implementation(Dependencies.Hilt.hiltNavigationCompose)
+
     implementation(Dependencies.Hilt.hilt)
     kapt(Dependencies.Hilt.hiltCompiler)
 
+    debugImplementation(Dependencies.Compose.uiTooling)
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.junitExt)
     androidTestImplementation(Dependencies.Test.espressoCore)

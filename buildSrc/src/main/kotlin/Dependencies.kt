@@ -5,6 +5,8 @@ object Configuration {
     val javaVersion = JavaVersion.VERSION_17
     const val jvmTarget = "17"
 
+    const val kotlinVersion = "1.9"
+
     const val compileSdk = 34
     const val targetSdk = 34
     const val minSdk = 24
@@ -22,17 +24,10 @@ object Plugins {
 
     object AndroidApplication {
         const val id = "com.android.application"
-        const val version = "8.2.2"
     }
 
     object KotlinAndroid {
         const val id = "org.jetbrains.kotlin.android"
-        const val version = "1.9.22"
-    }
-
-    object KotlinJvm {
-        const val id = "org.jetbrains.kotlin.jvm"
-        const val version = "1.9.22"
     }
 
     object AndroidLibrary {
@@ -43,6 +38,16 @@ object Plugins {
         const val id = "kotlin-kapt"
     }
 
+    object Hilt {
+        const val id = "dagger.hilt.android.plugin"
+    }
+
+}
+
+object ClasspathDependencies {
+    const val androidGradlePlugin = "com.android.tools.build:gradle:8.2.2"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+    const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.51"
 }
 
 object Dependencies {
@@ -70,6 +75,7 @@ object Dependencies {
         private const val version = "2.51"
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$version"
+        const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.2.0"
     }
 
     object OkHttp {
@@ -80,5 +86,18 @@ object Dependencies {
 
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+    }
+
+    object Compose {
+        private const val version = "1.6.4"
+        const val ui = "androidx.compose.ui:ui:$version"
+        const val material = "androidx.compose.material:material:$version"
+        const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+    }
+
+    object ComposeNavigation {
+        private const val version = "2.7.7"
+        const val navigation = "androidx.navigation:navigation-compose:$version"
     }
 }

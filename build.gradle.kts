@@ -1,6 +1,23 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id(Plugins.AndroidApplication.id) version Plugins.AndroidApplication.version apply false
-    id(Plugins.KotlinAndroid.id) version Plugins.KotlinAndroid.version apply false
-    id(Plugins.KotlinJvm.id) version Plugins.KotlinJvm.version apply false
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(ClasspathDependencies.androidGradlePlugin)
+        classpath(ClasspathDependencies.kotlinGradlePlugin)
+        classpath(ClasspathDependencies.hiltGradlePlugin)
+    }
+}
+
+subprojects {
+    apply(plugin = Plugins.KotlinAndroid.id)
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            languageVersion = Configuration.kotlinVersion
+        }
+    }
 }
