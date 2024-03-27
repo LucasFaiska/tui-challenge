@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.ui.challenges.completed
+package com.tui.challenge.presentation.scenes.completedchallenges
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,15 +26,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.tui.challenge.R
 import com.tui.challenge.navigation.NavigationActions
+import com.tui.challenge.presentation.scenes.components.ChipList
+import com.tui.challenge.presentation.scenes.components.EndlessList
+import com.tui.challenge.presentation.scenes.components.ErrorScreen
+import com.tui.challenge.presentation.scenes.components.LoadingScreen
 import com.tui.challenge.presentation.theme.AppTheme
 import com.tui.challenge.presentation.theme.FireBrick
 import com.tui.challenge.presentation.theme.Onyx
 import com.tui.challenge.presentation.theme.Timberwolf
 import com.tui.challenge.presentation.theme.Typography
-import com.tui.challenge.presentation.ui.components.ChipList
-import com.tui.challenge.presentation.ui.components.EndlessList
-import com.tui.challenge.presentation.ui.components.ErrorScreen
-import com.tui.challenge.presentation.ui.components.LoadingScreen
 import com.tui.challenge.utils.completedChallengesPreviewMock
 import com.tui.domain.model.CompletedChallenge
 
@@ -144,7 +144,7 @@ private fun CompletedChallengesScreenTitle(uiState: CompletedChallengesUiState.S
     Text(
         modifier = Modifier
             .padding(dimensionResource(id = R.dimen.default_padding))
-            .testTag(completedChallengesScreenTitleTestTag),
+            .testTag(screenTitleTestTag),
         style = Typography.h1,
         color = Timberwolf,
         text = stringResource(
@@ -162,7 +162,7 @@ private fun ColumnScope.ChallengesList(
     navigationActions: NavigationActions
 ) {
     Box(modifier = Modifier.weight(1f)) {
-        EndlessList(modifier = Modifier.testTag(completedChallengesListTestTag),
+        EndlessList(modifier = Modifier.testTag(challengesListTestTag),
             listContent = {
                 items(completedChallengeList) { challenge ->
                     CompletedChallenge(challenge, navigationActions)
@@ -197,7 +197,7 @@ private fun CompletedChallenge(
     Box(modifier = Modifier
         .background(color = Onyx)
         .fillMaxWidth()
-        .testTag(challengeItemListItemTestTag)
+        .testTag(challengeItemTestTag)
         .clickable {
             //onChallengeClick(challenge.id)
         }) {
@@ -228,8 +228,6 @@ private fun CompletedChallenge(
     }
 }
 
-
-const val completedChallengesScreenTitleTestTag =
-    "completedChallengesScreenTitleTestTag"
-const val completedChallengesListTestTag = "completedChallengesListTestTag"
-const val challengeItemListItemTestTag = "challengeItemListItemTestTag"
+const val screenTitleTestTag = "screenTitleTestTag"
+const val challengesListTestTag = "challengesListTestTag"
+const val challengeItemTestTag = "challengeItemTestTag"

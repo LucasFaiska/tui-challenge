@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tui.challenge.navigation.NavigationActions
-import com.tui.challenge.presentation.ui.challenges.completed.CompletedChallengesScreen
-import com.tui.challenge.presentation.ui.challenges.completed.CompletedChallengesViewModel
+import com.tui.challenge.presentation.ui.completedchallenges.CompletedChallengesScreen
+import com.tui.challenge.presentation.scenes.completedchallenges.CompletedChallengesViewModel
 
 @Composable
 fun CompletedChallengesRoute(navigationActions: NavigationActions) {

@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.ui.challenges.completed
+package com.tui.challenge.presentation.scenes.completedchallenges
 
 sealed class CompletedChallengesUiEvent {
     data class OnListScrolledToBottom(

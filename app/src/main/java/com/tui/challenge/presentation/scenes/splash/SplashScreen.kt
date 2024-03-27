@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.ui.splash
+package com.tui.challenge.presentation.scenes.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

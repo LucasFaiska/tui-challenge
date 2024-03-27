@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.ui.challenges.completed
+package com.tui.challenge.presentation.scenes.completedchallenges
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

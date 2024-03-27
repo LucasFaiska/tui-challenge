@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.ui.splash
+package com.tui.challenge.presentation.scenes.splash
 
 sealed class SplashUiState {
     data object Loading: SplashUiState()
