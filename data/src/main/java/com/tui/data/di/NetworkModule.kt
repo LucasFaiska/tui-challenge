@@ -51,5 +51,5 @@ object NetworkModule {
     fun provideCodewarsApi(retrofit: Retrofit): CodewarsApi = retrofit.create(CodewarsApi::class.java)
 
     const val TIMEOUT = 30L
-    const val BASE_URL = "https://api.codewars.com/api/v1/"
+    const val BASE_URL = "https://www.codewars.com/api/v1/"
 }

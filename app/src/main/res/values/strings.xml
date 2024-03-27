@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Tui Challenge</string>
-    <string name="completed_challenges_title">Completed Challenges (%s)</string>
+    <string name="completed_challenges_title">Showing %s of %s Completed Challenges</string>
     <string name="completed_label">Completed at %s</string>
     <string name="created_by_label">Created by: %s</string>
     <string name="approved_by_label">Approved by: %s</string>

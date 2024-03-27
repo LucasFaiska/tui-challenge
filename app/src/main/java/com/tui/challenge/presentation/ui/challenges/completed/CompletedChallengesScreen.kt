@@ -4,12 +4,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.platform.testTag
@@ -22,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tui.challenge.R
 import com.tui.challenge.navigation.NavigationActions
 import com.tui.challenge.presentation.theme.AppTheme
+import com.tui.challenge.presentation.theme.FireBrick
 import com.tui.challenge.presentation.theme.Onyx
 import com.tui.challenge.presentation.theme.Timberwolf
 import com.tui.challenge.presentation.theme.Typography
@@ -39,7 +45,24 @@ fun CompletedChallengesScreenSuccessPreview() {
         CompletedChallengesScreen(
             uiState = CompletedChallengesUiState.Success(
                 totalItems = 3,
-                challenges = completedChallengesPreviewMock
+                challenges = completedChallengesPreviewMock,
+                isLoadingMore = false
+            ),
+            {},
+            NavigationActions(rememberNavController())
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CompletedChallengesScreenSuccessWithLoadingMorePreview() {
+    AppTheme {
+        CompletedChallengesScreen(
+            uiState = CompletedChallengesUiState.Success(
+                totalItems = 3,
+                challenges = completedChallengesPreviewMock,
+                isLoadingMore = true
             ),
             {},
             NavigationActions(rememberNavController())
@@ -81,7 +104,9 @@ fun CompletedChallengesScreen(
         is CompletedChallengesUiState.Loading -> LoadingScreen()
         is CompletedChallengesUiState.Success -> {
             CompletedChallengesScreenContent(
-                uiState, onCompletedChallengesUiEvent, navigationActions
+                uiState,
+                onCompletedChallengesUiEvent,
+                navigationActions
             )
         }
 
@@ -99,38 +124,70 @@ fun CompletedChallengesScreenContent(
     onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
     navigationActions: NavigationActions
 ) {
-    Column {
-        Text(
-            modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.default_padding))
-                .testTag(completedChallengesScreenTitleTestTag),
-            style = Typography.h1,
-            color = Timberwolf,
-            text = stringResource(
-                id = R.string.completed_challenges_title, uiState.totalItems
-            )
-        )
+    Column(Modifier.fillMaxSize()) {
+        CompletedChallengesScreenTitle(uiState)
+
         ChallengesList(
-            uiState.challenges, onCompletedChallengesUiEvent, navigationActions
+            uiState.challenges,
+            onCompletedChallengesUiEvent,
+            navigationActions
+        )
+
+        if (uiState.isLoadingMore) {
+            BottomLoadingIndicator()
+        }
+    }
+}
+
+@Composable
+private fun CompletedChallengesScreenTitle(uiState: CompletedChallengesUiState.Success) {
+    Text(
+        modifier = Modifier
+            .padding(dimensionResource(id = R.dimen.default_padding))
+            .testTag(completedChallengesScreenTitleTestTag),
+        style = Typography.h1,
+        color = Timberwolf,
+        text = stringResource(
+            id = R.string.completed_challenges_title,
+            uiState.challenges.size,
+            uiState.totalItems
+        )
+    )
+}
+
+@Composable
+private fun ColumnScope.ChallengesList(
+    completedChallengeList: List<CompletedChallenge>,
+    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
+    navigationActions: NavigationActions
+) {
+    Box(modifier = Modifier.weight(1f)) {
+        EndlessList(modifier = Modifier.testTag(completedChallengesListTestTag),
+            listContent = {
+                items(completedChallengeList) { challenge ->
+                    CompletedChallenge(challenge, navigationActions)
+                }
+            },
+            onListBottomReached = {
+                onCompletedChallengesUiEvent(
+                    CompletedChallengesUiEvent.OnListScrolledToBottom(
+                        completedChallengeList.size / 200
+                    )
+                )
+            }
         )
     }
 }
 
 @Composable
-private fun ChallengesList(
-    completedChallengeList: List<CompletedChallenge>,
-    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
-    navigationActions: NavigationActions
-) {
-    EndlessList(modifier = Modifier.testTag(completedChallengesListTestTag),
-        listContent = {
-            items(completedChallengeList) { challenge ->
-                CompletedChallenge(challenge, navigationActions)
-            }
-        },
-        onListBottomReached = {
-            onCompletedChallengesUiEvent(CompletedChallengesUiEvent.OnListScrolledToBottom)
-        })
+private fun ColumnScope.BottomLoadingIndicator() {
+    CircularProgressIndicator(
+        modifier = Modifier
+            .size(70.dp)
+            .padding(dimensionResource(id = R.dimen.default_padding))
+            .align(Alignment.CenterHorizontally),
+        color = FireBrick
+    )
 }
 
 @Composable

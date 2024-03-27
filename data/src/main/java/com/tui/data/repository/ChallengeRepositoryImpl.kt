@@ -20,8 +20,8 @@ class ChallengeRepositoryImpl(private val codewarsApi: CodewarsApi) : ChallengeR
                 val completedChallengeResponse = networkResponse.body
                 RepositoryResult.Success(
                     PageListData(
-                        completedChallengeResponse.totalItems,
                         completedChallengeResponse.totalPages,
+                        completedChallengeResponse.totalItems,
                         completedChallengeResponse.data.map { it.toCompletedChallenge() }
                     )
                 )
