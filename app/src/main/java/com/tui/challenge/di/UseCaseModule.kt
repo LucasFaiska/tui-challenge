@@ -1,6 +1,8 @@
 package com.tui.challenge.di
 
 import com.tui.domain.repository.ChallengeRepository
+import com.tui.domain.usecase.challengedetails.GetChallengeDetails
+import com.tui.domain.usecase.challengedetails.GetChallengeDetailsImpl
 import com.tui.domain.usecase.completedchallenges.GetCompletedChallengesFromUser
 import com.tui.domain.usecase.completedchallenges.GetCompletedChallengesFromUserImpl
 import dagger.Module
@@ -11,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CompletedChallengesModule {
+object UseCaseModule {
 
     @Singleton
     @Provides
@@ -19,6 +21,14 @@ object CompletedChallengesModule {
         repository: ChallengeRepository
     ): GetCompletedChallengesFromUser {
         return GetCompletedChallengesFromUserImpl(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetChallengeDetailsUseCase(
+        repository: ChallengeRepository
+    ): GetChallengeDetails {
+        return GetChallengeDetailsImpl(repository)
     }
 
 }

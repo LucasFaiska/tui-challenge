@@ -192,15 +192,17 @@ private fun ColumnScope.BottomLoadingIndicator() {
 
 @Composable
 private fun CompletedChallenge(
-    challenge: CompletedChallenge, navigationActions: NavigationActions
+    challenge: CompletedChallenge,
+    navigationActions: NavigationActions
 ) {
     Box(modifier = Modifier
         .background(color = Onyx)
         .fillMaxWidth()
         .testTag(challengeItemTestTag)
         .clickable {
-            //onChallengeClick(challenge.id)
-        }) {
+            navigationActions.navigateToChallengeDetails(challenge.id)
+        }
+    ) {
 
         Column(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.default_padding)),

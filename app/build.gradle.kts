@@ -22,7 +22,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -49,6 +52,7 @@ dependencies {
     implementation(Dependencies.Compose.material)
     implementation(Dependencies.ComposeNavigation.navigation)
     implementation(Dependencies.Hilt.hiltNavigationCompose)
+    implementation(Dependencies.Markdown.markdown)
 
     implementation(Dependencies.Hilt.hilt)
     kapt(Dependencies.Hilt.hiltCompiler)

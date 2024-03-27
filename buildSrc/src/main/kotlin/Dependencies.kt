@@ -52,12 +52,6 @@ object ClasspathDependencies {
 
 object Dependencies {
 
-    object AndroidX {
-        const val coreKtx = "androidx.core:core-ktx:1.12.0"
-        const val appCompat = "androidx.appcompat:appcompat:1.6.1"
-        const val material = "com.google.android.material:material:1.11.0"
-    }
-
     object Test {
         const val junit = "junit:junit:4.13.2"
         const val junitExt = "androidx.test.ext:junit:1.1.5"
@@ -99,5 +93,9 @@ object Dependencies {
     object ComposeNavigation {
         private const val version = "2.7.7"
         const val navigation = "androidx.navigation:navigation-compose:$version"
+    }
+
+    object Markdown {
+        const val markdown = "com.github.jeziellago:compose-markdown:0.4.1"
     }
 }
