@@ -2,22 +2,27 @@ package com.tui.challenge.navigation
 
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import com.tui.challenge.routes.Destinations
-import com.tui.challenge.routes.Destinations.CHALLENGE_DETAILS_ROUTE
-import com.tui.challenge.routes.Destinations.COMPLETED_CHALLENGES_ROUTE
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
-class NavigationActions(navController: NavHostController) {
+class NavigationActions(private val navController: NavHostController) {
 
-    val navigateToCompletedChallenges: () -> Unit = {
-        navController.navigate(COMPLETED_CHALLENGES_ROUTE) {
+    fun navigateToDestination(destination: Destination) {
+        navController.navigate(destination.route) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
         }
     }
 
-    val navigateToChallengeDetails: (String) -> Unit = { challengeId ->
-        navController.navigate("${CHALLENGE_DETAILS_ROUTE}/$challengeId") {
+    fun navigateToDestinationWithData(
+        destination: Destination,
+        data: List<String>
+    ) {
+        val concatenatedData = data.joinToString("/")
+        val url = "${destination.route}/$concatenatedData"
+        navController.navigate(url) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

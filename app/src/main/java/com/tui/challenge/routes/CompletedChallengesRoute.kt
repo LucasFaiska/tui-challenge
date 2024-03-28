@@ -8,12 +8,11 @@ import com.tui.challenge.presentation.scenes.completedchallenges.CompletedChalle
 import com.tui.challenge.presentation.scenes.completedchallenges.CompletedChallengesViewModel
 
 @Composable
-fun CompletedChallengesRoute(navigationActions: NavigationActions) {
+fun CompletedChallengesRoute() {
     val viewModel = hiltViewModel<CompletedChallengesViewModel>()
 
     CompletedChallengesScreen(
         uiState = viewModel.uiState.collectAsState().value,
-        onCompletedChallengesUiEvent = viewModel::onEvent,
-        navigationActions = navigationActions
+        onCompletedChallengesUiEvent = viewModel::onEvent
     )
 }

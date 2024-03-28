@@ -21,19 +21,15 @@ import com.tui.challenge.presentation.theme.Onyx
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreen(SplashUiState.Loading, NavigationActions(rememberNavController()))
+    SplashScreen(SplashUiState.Loading)
 }
 
 @Composable
-fun SplashScreen(
-    uiState: SplashUiState,
-    navigationActions: NavigationActions
-) {
+fun SplashScreen(uiState: SplashUiState) {
 
     Scaffold { paddingValues ->
         when (uiState) {
             is SplashUiState.Loading -> SplashScreenContent(paddingValues)
-            is SplashUiState.LoadingFinished -> navigationActions.navigateToCompletedChallenges()
         }
     }
 

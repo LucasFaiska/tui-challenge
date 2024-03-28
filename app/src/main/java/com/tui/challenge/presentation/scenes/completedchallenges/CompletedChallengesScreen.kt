@@ -23,9 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
 import com.tui.challenge.R
-import com.tui.challenge.navigation.NavigationActions
 import com.tui.challenge.presentation.scenes.components.ChipList
 import com.tui.challenge.presentation.scenes.components.EndlessList
 import com.tui.challenge.presentation.scenes.components.ErrorScreen
@@ -47,10 +45,8 @@ fun CompletedChallengesScreenSuccessPreview() {
                 totalItems = 3,
                 challenges = completedChallengesPreviewMock,
                 isLoadingMore = false
-            ),
-            {},
-            NavigationActions(rememberNavController())
-        )
+            )
+        ) {}
     }
 }
 
@@ -63,10 +59,8 @@ fun CompletedChallengesScreenSuccessWithLoadingMorePreview() {
                 totalItems = 3,
                 challenges = completedChallengesPreviewMock,
                 isLoadingMore = true
-            ),
-            {},
-            NavigationActions(rememberNavController())
-        )
+            )
+        ) {}
     }
 }
 
@@ -75,10 +69,8 @@ fun CompletedChallengesScreenSuccessWithLoadingMorePreview() {
 fun CompletedChallengesScreenLoadingPreview() {
     AppTheme {
         CompletedChallengesScreen(
-            uiState = CompletedChallengesUiState.Loading,
-            {},
-            NavigationActions(rememberNavController())
-        )
+            uiState = CompletedChallengesUiState.Loading
+        ) {}
     }
 }
 
@@ -87,26 +79,22 @@ fun CompletedChallengesScreenLoadingPreview() {
 fun CompletedChallengesScreenErrorPreview() {
     AppTheme {
         CompletedChallengesScreen(
-            uiState = CompletedChallengesUiState.Error,
-            {},
-            NavigationActions(rememberNavController())
-        )
+            uiState = CompletedChallengesUiState.Error
+        ) {}
     }
 }
 
 @Composable
 fun CompletedChallengesScreen(
     uiState: CompletedChallengesUiState,
-    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
-    navigationActions: NavigationActions
+    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit
 ) {
     when (uiState) {
         is CompletedChallengesUiState.Loading -> LoadingScreen()
         is CompletedChallengesUiState.Success -> {
             CompletedChallengesScreenContent(
                 uiState,
-                onCompletedChallengesUiEvent,
-                navigationActions
+                onCompletedChallengesUiEvent
             )
         }
 
@@ -121,16 +109,14 @@ fun CompletedChallengesScreen(
 @Composable
 fun CompletedChallengesScreenContent(
     uiState: CompletedChallengesUiState.Success,
-    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
-    navigationActions: NavigationActions
+    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit
 ) {
     Column(Modifier.fillMaxSize()) {
         CompletedChallengesScreenTitle(uiState)
 
         ChallengesList(
             uiState.challenges,
-            onCompletedChallengesUiEvent,
-            navigationActions
+            onCompletedChallengesUiEvent
         )
 
         if (uiState.isLoadingMore) {
@@ -158,14 +144,13 @@ private fun CompletedChallengesScreenTitle(uiState: CompletedChallengesUiState.S
 @Composable
 private fun ColumnScope.ChallengesList(
     completedChallengeList: List<CompletedChallenge>,
-    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit,
-    navigationActions: NavigationActions
+    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit
 ) {
     Box(modifier = Modifier.weight(1f)) {
         EndlessList(modifier = Modifier.testTag(challengesListTestTag),
             listContent = {
                 items(completedChallengeList) { challenge ->
-                    CompletedChallenge(challenge, navigationActions)
+                    CompletedChallenge(challenge, onCompletedChallengesUiEvent)
                 }
             },
             onListBottomReached = {
@@ -193,14 +178,18 @@ private fun ColumnScope.BottomLoadingIndicator() {
 @Composable
 private fun CompletedChallenge(
     challenge: CompletedChallenge,
-    navigationActions: NavigationActions
+    onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit
 ) {
     Box(modifier = Modifier
         .background(color = Onyx)
         .fillMaxWidth()
         .testTag(challengeItemTestTag)
         .clickable {
-            navigationActions.navigateToChallengeDetails(challenge.id)
+            onCompletedChallengesUiEvent(
+                CompletedChallengesUiEvent.OnChallengeClick(
+                    challenge.id
+                )
+            )
         }
     ) {
 

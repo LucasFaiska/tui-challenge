@@ -2,6 +2,8 @@ package com.tui.challenge.presentation.scenes.completedchallenges
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tui.challenge.navigation.NavTarget
+import com.tui.challenge.navigation.Navigator
 import com.tui.domain.usecase.completedchallenges.GetCompletedChallengesFromUser
 import com.tui.domain.usecase.completedchallenges.GetCompletedChallengesFromUserResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CompletedChallengesViewModel @Inject constructor(
-    val getCompletedChallengesFromUser: GetCompletedChallengesFromUser
+    val getCompletedChallengesFromUser: GetCompletedChallengesFromUser,
+    val navigator: Navigator
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<CompletedChallengesUiState>(
@@ -77,6 +80,12 @@ class CompletedChallengesViewModel @Inject constructor(
 
             is CompletedChallengesUiEvent.OnRetryButtonClick -> {
                 loadCompletedChallenges(0)
+            }
+
+            is CompletedChallengesUiEvent.OnChallengeClick -> {
+                viewModelScope.launch {
+                    navigator.navigateTo(NavTarget.ChallengeDetails(event.challengeId))
+                }
             }
         }
     }

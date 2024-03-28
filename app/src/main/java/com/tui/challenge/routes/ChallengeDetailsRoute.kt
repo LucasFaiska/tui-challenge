@@ -4,12 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tui.challenge.navigation.NavigationActions
 import com.tui.challenge.presentation.scenes.challengedetails.ChallengeDetailsScreen
 import com.tui.challenge.presentation.scenes.challengedetails.ChallengeDetailsViewModel
 
 @Composable
-fun ChallengeDetailsRoute(challengeId: String, navigationActions: NavigationActions) {
+fun ChallengeDetailsRoute(challengeId: String) {
     val viewModel = hiltViewModel<ChallengeDetailsViewModel>()
 
     LaunchedEffect(Unit) {

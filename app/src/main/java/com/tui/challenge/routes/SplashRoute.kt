@@ -8,11 +8,8 @@ import com.tui.challenge.presentation.scenes.splash.SplashViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun SplashRoute(navigationActions: NavigationActions) {
+fun SplashRoute() {
     val splashViewModel = hiltViewModel<SplashViewModel>()
 
-    SplashScreen(
-        uiState = splashViewModel.uiState.collectAsState().value,
-        navigationActions = navigationActions
-    )
+    SplashScreen(uiState = splashViewModel.uiState.collectAsState().value)
 }

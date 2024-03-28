@@ -6,4 +6,6 @@ sealed class CompletedChallengesUiEvent {
     ) : CompletedChallengesUiEvent()
 
     data object OnRetryButtonClick : CompletedChallengesUiEvent()
+
+    data class OnChallengeClick(val challengeId: String) : CompletedChallengesUiEvent()
 }
