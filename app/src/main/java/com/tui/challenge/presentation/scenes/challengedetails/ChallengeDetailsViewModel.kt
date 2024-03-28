@@ -26,7 +26,7 @@ class ChallengeDetailsViewModel @Inject constructor(
     val uiState: StateFlow<ChallengeDetailsUiState> = _uiState
 
     fun loadChallengeDetails(id: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             handleResult(getChallengeDetails(id))
         }
     }

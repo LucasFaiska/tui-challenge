@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
@@ -15,8 +16,11 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideChallengeRepository(codewarsApi: CodewarsApi): ChallengeRepository {
-        return ChallengeRepositoryImpl(codewarsApi)
+    fun provideChallengeRepository(
+        codewarsApi: CodewarsApi,
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher
+    ): ChallengeRepository {
+        return ChallengeRepositoryImpl(codewarsApi, coroutineDispatcher)
     }
 
 }

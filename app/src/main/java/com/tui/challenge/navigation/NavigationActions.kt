@@ -1,32 +1,40 @@
 package com.tui.challenge.navigation
 
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import androidx.navigation.NavOptions
 
 class NavigationActions(private val navController: NavHostController) {
 
-    fun navigateToDestination(destination: Destination) {
-        navController.navigate(destination.route) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
+    fun navigateToDestination(
+        destination: Destination,
+        popUpTo: Boolean = false,
+        popUpToDestination: Destination? = null
+    ) {
+        val navOptionsBuilder = NavOptions.Builder()
+        if (popUpTo && popUpToDestination != null) {
+            navOptionsBuilder.setPopUpTo(popUpToDestination.route, true)
         }
+        val navOptions = navOptionsBuilder.build()
+
+        navController.navigate(destination.route, navOptions)
     }
 
     fun navigateToDestinationWithData(
         destination: Destination,
-        data: List<String>
+        data: List<String>,
+        popUpTo: Boolean = false,
+        popUpToDestination: Destination? = null
     ) {
         val concatenatedData = data.joinToString("/")
         val url = "${destination.route}/$concatenatedData"
-        navController.navigate(url) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
+
+        val navOptionsBuilder = NavOptions.Builder()
+        if (popUpTo && popUpToDestination != null) {
+            navOptionsBuilder.setPopUpTo(popUpToDestination.route, true)
         }
+        val navOptions = navOptionsBuilder.build()
+
+        navController.navigate(url, navOptions)
     }
 
 }
