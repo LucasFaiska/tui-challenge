@@ -79,7 +79,9 @@ object Dependencies {
     }
 
     object Coroutines {
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+        private const val version = "1.8.0"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val test =  "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
     }
 
     object Compose {

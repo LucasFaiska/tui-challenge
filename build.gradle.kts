@@ -21,3 +21,7 @@ subprojects {
         }
     }
 }
+
+tasks.register("runAllTests") {
+    dependsOn(":data:test", ":domain:test", ":app:testDebugUnitTest")
+}

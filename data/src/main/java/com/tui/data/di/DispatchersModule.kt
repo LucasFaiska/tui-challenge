@@ -14,19 +14,19 @@ object DispatchersModule {
 
     @Provides
     @DefaultDispatcher
-    fun providesDefaultDispatcher(): CoroutineDispatcher {
+    fun provideDefaultDispatcher(): CoroutineDispatcher {
         return Dispatchers.Default
     }
 
     @Provides
     @IoDispatcher
-    fun providesIoDispatcher(): CoroutineDispatcher {
+    fun provideIoDispatcher(): CoroutineDispatcher {
         return Dispatchers.IO
     }
 
     @Provides
     @MainDispatcher
-    fun providesMainDispatcher(): CoroutineDispatcher {
+    fun provideMainDispatcher(): CoroutineDispatcher {
         return Dispatchers.Main
     }
 }

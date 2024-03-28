@@ -14,7 +14,8 @@ class RepositoryModuleTest {
                     NetworkModule.provideHttpClient(),
                     NetworkModule.provideGson()
                 )
-            )
+            ),
+            DispatchersModule.provideIoDispatcher()
         )
 
         val providedRepository = RepositoryModule.provideChallengeRepository(
@@ -23,7 +24,8 @@ class RepositoryModuleTest {
                     NetworkModule.provideHttpClient(),
                     NetworkModule.provideGson()
                 )
-            )
+            ),
+            DispatchersModule.provideIoDispatcher()
         )
 
         assert(expectedRepository::class.java == providedRepository::class.java)

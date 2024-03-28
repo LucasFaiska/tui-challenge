@@ -12,7 +12,8 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
@@ -26,16 +27,22 @@ class ChallengeRepositoryTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        repository = ChallengeRepositoryImpl(codewarsApi)
+        repository =
+            ChallengeRepositoryImpl(codewarsApi, StandardTestDispatcher())
     }
 
     @Test
     fun `Given the api returns a list of completed challenges, When repository getCompletedChallenges is invoked, Then return Success with the list of completed challenges from api`() =
-        runBlocking {
+        runTest {
             val username = "username"
             val page = 1
             val completedChallenges = completedChallengesMock
-            coEvery { codewarsApi.getCompletedChallenges(username, page) } returns NetworkResponse.Success(
+            coEvery {
+                codewarsApi.getCompletedChallenges(
+                    username,
+                    page
+                )
+            } returns NetworkResponse.Success(
                 completedChallengesResponseMock
             )
             val result = repository.getCompletedChallenges(username, page)
@@ -48,10 +55,15 @@ class ChallengeRepositoryTest {
 
     @Test
     fun `Given the api returns an error, When repository getCompletedChallenges is invoked, Then return Error`() =
-        runBlocking {
+        runTest {
             val username = "username"
             val page = 1
-            coEvery { codewarsApi.getCompletedChallenges(username, page) } returns NetworkResponse.Error
+            coEvery {
+                codewarsApi.getCompletedChallenges(
+                    username,
+                    page
+                )
+            } returns NetworkResponse.Error
             val result = repository.getCompletedChallenges(username, page)
             coVerify {
                 codewarsApi.getCompletedChallenges(username, page)
@@ -61,10 +73,15 @@ class ChallengeRepositoryTest {
 
     @Test
     fun `Given the api returns an exception, When repository getCompletedChallenges is invoked, Then return Error`() =
-        runBlocking {
+        runTest {
             val username = "username"
             val page = 1
-            coEvery { codewarsApi.getCompletedChallenges(username, page) } throws Exception()
+            coEvery {
+                codewarsApi.getCompletedChallenges(
+                    username,
+                    page
+                )
+            } throws Exception()
             val result = repository.getCompletedChallenges(username, page)
             coVerify {
                 codewarsApi.getCompletedChallenges(username, page)
@@ -74,7 +91,7 @@ class ChallengeRepositoryTest {
 
     @Test
     fun `Given the api returns a challenge, When repository getChallengeDetails is invoked, Then return Success with the challenge from api`() =
-        runBlocking {
+        runTest {
             val challengeId = "challengeId"
             val challenge = challengeMock
             coEvery { codewarsApi.getChallengeDetails(challengeId) } returns NetworkResponse.Success(
@@ -90,7 +107,7 @@ class ChallengeRepositoryTest {
 
     @Test
     fun `Given the api returns an error, When repository getChallengeDetails is invoked, Then return Error`() =
-        runBlocking {
+        runTest {
             val challengeId = "challengeId"
             coEvery { codewarsApi.getChallengeDetails(challengeId) } returns NetworkResponse.Error
             val result = repository.getChallengeDetails(challengeId)
@@ -102,7 +119,7 @@ class ChallengeRepositoryTest {
 
     @Test
     fun `Given the api returns an exception, When repository getChallengeDetails is invoked, Then return Error`() =
-        runBlocking {
+        runTest {
             val challengeId = "challengeId"
             coEvery { codewarsApi.getChallengeDetails(challengeId) } throws Exception()
             val result = repository.getChallengeDetails(challengeId)

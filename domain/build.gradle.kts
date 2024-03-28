@@ -38,4 +38,5 @@ dependencies {
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.junitExt)
     testImplementation(Dependencies.Test.mockk)
+    testImplementation(Dependencies.Coroutines.test)
 }

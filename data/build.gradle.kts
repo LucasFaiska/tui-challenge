@@ -45,4 +45,5 @@ dependencies {
     testImplementation(Dependencies.Test.junitExt)
     testImplementation(Dependencies.OkHttp.mockWebServer)
     testImplementation(Dependencies.Test.mockk)
+    testImplementation(Dependencies.Coroutines.test)
 }
