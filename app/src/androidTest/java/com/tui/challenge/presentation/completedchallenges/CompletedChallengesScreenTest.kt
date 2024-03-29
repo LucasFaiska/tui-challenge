@@ -93,7 +93,8 @@ class CompletedChallengesScreenTest {
         var retryActionInvoked = false
 
         val onRetryAction: (CompletedChallengesUiEvent) -> Unit = {
-            retryActionInvoked = it is CompletedChallengesUiEvent.OnRetryButtonClick
+            retryActionInvoked =
+                it is CompletedChallengesUiEvent.OnRetryButtonClick
         }
 
         composeTestRule.setContent {

@@ -16,7 +16,6 @@ fun ChallengeDetailsRoute(challengeId: String) {
     }
 
     ChallengeDetailsScreen(
-        challengeId = challengeId,
         uiState = viewModel.uiState.collectAsState().value,
         onChallengeDetailsUiEvent = viewModel::onEvent
     )

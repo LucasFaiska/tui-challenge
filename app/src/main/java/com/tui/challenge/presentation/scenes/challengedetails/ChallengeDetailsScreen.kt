@@ -28,7 +28,6 @@ import dev.jeziellago.compose.markdowntext.MarkdownText
 fun ChallengeDetailsScreenSuccessPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsMock.id.orEmpty(),
             uiState = ChallengeDetailsUiState.Success(
                 challengeDetailsMock
             )
@@ -41,7 +40,6 @@ fun ChallengeDetailsScreenSuccessPreview() {
 fun ChallengeDetailsScreenLoadingPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsMock.id.orEmpty(),
             uiState = ChallengeDetailsUiState.Loading
         ) {}
     }
@@ -52,15 +50,13 @@ fun ChallengeDetailsScreenLoadingPreview() {
 fun ChallengeDetailsScreenErrorPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsMock.id.orEmpty(),
-            uiState = ChallengeDetailsUiState.Error
+            uiState = ChallengeDetailsUiState.Error(challengeDetailsMock.id.orEmpty())
         ) {}
     }
 }
 
 @Composable
 fun ChallengeDetailsScreen(
-    challengeId: String,
     uiState: ChallengeDetailsUiState,
     onChallengeDetailsUiEvent: (ChallengeDetailsUiEvent) -> Unit
 ) {
@@ -73,9 +69,7 @@ fun ChallengeDetailsScreen(
         is ChallengeDetailsUiState.Error -> {
             ErrorScreen {
                 onChallengeDetailsUiEvent(
-                    ChallengeDetailsUiEvent.OnRetryButtonClick(
-                        challengeId
-                    )
+                    ChallengeDetailsUiEvent.OnRetryButtonClick(uiState.challengeId)
                 )
             }
         }

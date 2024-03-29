@@ -2,16 +2,11 @@ package com.tui.challenge.presentation.scenes.challengedetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tui.challenge.presentation.scenes.completedchallenges.CompletedChallengesUiState
-import com.tui.challenge.presentation.scenes.completedchallenges.CompletedChallengesViewModel
 import com.tui.domain.usecase.challengedetails.GetChallengeDetails
 import com.tui.domain.usecase.challengedetails.GetChallengeDetailsResult
-import com.tui.domain.usecase.completedchallenges.GetCompletedChallengesFromUserResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,18 +22,18 @@ class ChallengeDetailsViewModel @Inject constructor(
 
     fun loadChallengeDetails(id: String) {
         viewModelScope.launch {
-            handleResult(getChallengeDetails(id))
+            handleResult(id, getChallengeDetails(id))
         }
     }
 
-    private fun handleResult(result: GetChallengeDetailsResult) {
+    private fun handleResult(id: String, result: GetChallengeDetailsResult) {
         when (result) {
             is GetChallengeDetailsResult.Success -> {
                 _uiState.value = ChallengeDetailsUiState.Success(result.data)
             }
 
             else -> {
-                _uiState.value = ChallengeDetailsUiState.Error
+                _uiState.value = ChallengeDetailsUiState.Error(id)
             }
         }
     }
