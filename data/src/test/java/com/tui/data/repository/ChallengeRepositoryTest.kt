@@ -12,8 +12,10 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
+import io.mockk.unmockkAll
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
@@ -29,6 +31,11 @@ class ChallengeRepositoryTest {
         MockKAnnotations.init(this)
         repository =
             ChallengeRepositoryImpl(codewarsApi, StandardTestDispatcher())
+    }
+
+    @After
+    fun tearDown() {
+        unmockkAll()
     }
 
     @Test
