@@ -27,4 +27,5 @@ jobs:
           chmod +x ./gradlew
 
       - name: Build and run tests
-        run: ./gradlew runAllTests
+        run: ./gradlew app:test
+

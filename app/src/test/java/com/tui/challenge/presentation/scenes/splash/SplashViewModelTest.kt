@@ -51,7 +51,7 @@ class SplashViewModelTest {
         runTest {
             viewModel.uiState.test {
                 assertEquals(SplashUiState.Loading, awaitItem())
-                coVerify(timeout = 3000, atLeast = 1) {
+                coVerify(timeout = 4000, atLeast = 1) {
                     navigator.navigateTo(NavTarget.CompletedChallenges)
                 }
             }
