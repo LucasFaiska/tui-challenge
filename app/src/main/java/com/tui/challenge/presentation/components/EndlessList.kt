@@ -10,6 +10,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun EndlessList(
@@ -19,7 +20,10 @@ fun EndlessList(
 ) {
     val listState = rememberLazyListState()
 
-    LazyColumn(modifier = modifier, state = listState) {
+    LazyColumn(
+        modifier = modifier.testTag(EndlessListTestTag),
+        state = listState
+    ) {
         listContent()
     }
 
@@ -48,3 +52,5 @@ fun LazyListState.OnBottomReached(
             }
     }
 }
+
+const val EndlessListTestTag = "EndlessListTestTag"
