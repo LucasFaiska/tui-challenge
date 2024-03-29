@@ -13,6 +13,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import io.mockk.unmockkAll
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -57,7 +58,10 @@ class ChallengeRepositoryTest {
                 codewarsApi.getCompletedChallenges(username, page)
             }
             assert(result is RepositoryResult.Success)
-            assert((result as RepositoryResult.Success).data == completedChallenges)
+            assertEquals(
+                (result as RepositoryResult.Success).data,
+                completedChallenges
+            )
         }
 
     @Test
@@ -109,7 +113,7 @@ class ChallengeRepositoryTest {
                 codewarsApi.getChallengeDetails(challengeId)
             }
             assert(result is RepositoryResult.Success)
-            assert((result as RepositoryResult.Success).data == challenge)
+            assertEquals((result as RepositoryResult.Success).data, challenge)
         }
 
     @Test
