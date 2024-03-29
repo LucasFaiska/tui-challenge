@@ -24,15 +24,13 @@ jobs:
 
       - name: Grant execute permission for Gradle wrappers
         run: |
-          chmod +x app/gradlew
-          chmod +x domain/gradlew
-          chmod +x data/gradlew
+          chmod +x ./gradlew
 
       - name: Build and run tests (app module)
-        run: ./app/gradlew :app:clean :app:test
+        run: ./gradlew :app:clean :app:test
 
       - name: Build and run tests (domain module)
-        run: ./domain/gradlew :domain:clean :domain:test
+        run: ./gradlew :domain:clean :domain:test
 
       - name: Build and run tests (data module)
-        run: ./data/gradlew :data:clean :data:test
+        run: ./gradlew :data:clean :data:test
