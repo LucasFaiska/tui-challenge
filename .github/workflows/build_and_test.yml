@@ -28,3 +28,9 @@ jobs:
 
       - name: Build and run tests
         run: ./gradlew runAllTests
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Report
+          path: /home/runner/work/tui-challenge/tui-challenge/data/build/reports/tests/testDebugUnitTest/index.html
