@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.scenes.components
+package com.tui.challenge.presentation.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box

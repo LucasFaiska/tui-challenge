@@ -57,6 +57,7 @@ object Dependencies {
         const val junitExt = "androidx.test.ext:junit:1.1.5"
         const val espressoCore = "androidx.test.espresso:espresso-core:3.5.1"
         const val mockk = "io.mockk:mockk:1.13.10"
+        const val turbine = "app.cash.turbine:turbine:1.1.0"
     }
 
     object Retrofit {

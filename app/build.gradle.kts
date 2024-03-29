@@ -58,7 +58,11 @@ dependencies {
     kapt(Dependencies.Hilt.hiltCompiler)
 
     debugImplementation(Dependencies.Compose.uiTooling)
+
     testImplementation(Dependencies.Test.junit)
+    testImplementation(Dependencies.Test.mockk)
+    testImplementation(Dependencies.Test.turbine)
+    testImplementation(Dependencies.Coroutines.test)
     androidTestImplementation(Dependencies.Test.junitExt)
     androidTestImplementation(Dependencies.Test.espressoCore)
 }

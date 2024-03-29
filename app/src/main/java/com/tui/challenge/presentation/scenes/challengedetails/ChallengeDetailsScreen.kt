@@ -13,13 +13,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tui.challenge.R
-import com.tui.challenge.presentation.scenes.components.ChipList
-import com.tui.challenge.presentation.scenes.components.ErrorScreen
-import com.tui.challenge.presentation.scenes.components.LoadingScreen
+import com.tui.challenge.presentation.components.ChipList
+import com.tui.challenge.presentation.components.ErrorScreen
+import com.tui.challenge.presentation.components.LoadingScreen
 import com.tui.challenge.presentation.theme.AppTheme
 import com.tui.challenge.presentation.theme.Timberwolf
 import com.tui.challenge.presentation.theme.Typography
-import com.tui.challenge.utils.challengeDetailsPreviewMock
+import com.tui.challenge.utils.challengeDetailsMock
 import com.tui.domain.model.Challenge
 import dev.jeziellago.compose.markdowntext.MarkdownText
 
@@ -28,9 +28,9 @@ import dev.jeziellago.compose.markdowntext.MarkdownText
 fun ChallengeDetailsScreenSuccessPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsPreviewMock.id.orEmpty(),
+            challengeId = challengeDetailsMock.id.orEmpty(),
             uiState = ChallengeDetailsUiState.Success(
-                challengeDetailsPreviewMock
+                challengeDetailsMock
             )
         ) {}
     }
@@ -41,7 +41,7 @@ fun ChallengeDetailsScreenSuccessPreview() {
 fun ChallengeDetailsScreenLoadingPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsPreviewMock.id.orEmpty(),
+            challengeId = challengeDetailsMock.id.orEmpty(),
             uiState = ChallengeDetailsUiState.Loading
         ) {}
     }
@@ -52,7 +52,7 @@ fun ChallengeDetailsScreenLoadingPreview() {
 fun ChallengeDetailsScreenErrorPreview() {
     AppTheme {
         ChallengeDetailsScreen(
-            challengeId = challengeDetailsPreviewMock.id.orEmpty(),
+            challengeId = challengeDetailsMock.id.orEmpty(),
             uiState = ChallengeDetailsUiState.Error
         ) {}
     }

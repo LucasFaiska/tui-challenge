@@ -6,7 +6,7 @@ import com.tui.domain.model.Rank
 import com.tui.domain.model.User
 import java.util.Date
 
-val completedChallengesPreviewMock = listOf(
+val completedChallengesMock = listOf(
     CompletedChallenge(
         id = "123456",
         name = "Challenge 1",
@@ -41,7 +41,7 @@ val completedChallengesPreviewMock = listOf(
     )
 )
 
-val challengeDetailsPreviewMock = Challenge(
+val challengeDetailsMock = Challenge(
     id = "5277c8a221e209d3f6000b56",
     name = "Valid Braces",
     slug = "valid-braces",

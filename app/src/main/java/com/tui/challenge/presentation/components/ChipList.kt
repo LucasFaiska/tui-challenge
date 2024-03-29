@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.scenes.components
+package com.tui.challenge.presentation.components
 
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow

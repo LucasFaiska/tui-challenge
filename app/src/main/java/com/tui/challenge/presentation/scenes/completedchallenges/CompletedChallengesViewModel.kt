@@ -31,7 +31,7 @@ class CompletedChallengesViewModel @Inject constructor(
 
     private fun loadCompletedChallenges(currentPage: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            handleResult(getCompletedChallengesFromUser(user, currentPage))
+            handleResult(getCompletedChallengesFromUser(USER, currentPage))
         }
     }
 
@@ -99,7 +99,7 @@ class CompletedChallengesViewModel @Inject constructor(
     }
 
     companion object {
-        private const val user = "g964"
+        const val USER = "g964"
     }
 
 }

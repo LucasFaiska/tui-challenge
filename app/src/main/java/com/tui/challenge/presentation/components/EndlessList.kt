@@ -1,4 +1,4 @@
-package com.tui.challenge.presentation.scenes.components
+package com.tui.challenge.presentation.components
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
