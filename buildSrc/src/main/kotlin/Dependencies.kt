@@ -91,6 +91,8 @@ object Dependencies {
         const val material = "androidx.compose.material:material:$version"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+        const val test = "androidx.compose.ui:ui-test-junit4:$version"
+        const val testManifest = "androidx.compose.ui:ui-test-manifest:$version"
     }
 
     object ComposeNavigation {

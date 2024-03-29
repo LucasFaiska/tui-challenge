@@ -30,6 +30,8 @@ fun ChipList(chips: List<String>) {
             .testTag(ChipListTestTag),
     ) {
         for (chip in chips) {
+            if (chip.isEmpty()) continue
+
             Chip(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.small_padding)),
                 onClick = {}
