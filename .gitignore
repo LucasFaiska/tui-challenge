@@ -8,6 +8,3 @@ build
 .externalNativeBuild
 .cxx
 local.properties
-
-# Project exclude paths
-/gradle/
