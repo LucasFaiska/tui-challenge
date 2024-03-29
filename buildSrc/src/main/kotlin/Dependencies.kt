@@ -71,6 +71,7 @@ object Dependencies {
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$version"
         const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.2.0"
+        const val hiltTesting = "com.google.dagger:hilt-android-testing:$version"
     }
 
     object OkHttp {

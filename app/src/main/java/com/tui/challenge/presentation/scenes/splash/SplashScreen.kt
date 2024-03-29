@@ -1,5 +1,6 @@
 package com.tui.challenge.presentation.scenes.splash
 
+import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,6 +11,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,7 @@ fun SplashScreen(uiState: SplashUiState) {
 fun SplashScreenContent(paddingValues: PaddingValues) {
     Box(
         modifier = Modifier
+            .testTag(SplashScreenTestTag)
             .background(color = Onyx)
             .fillMaxSize()
             .padding(paddingValues),
@@ -53,3 +56,4 @@ fun SplashScreenContent(paddingValues: PaddingValues) {
 }
 
 const val SPLASH_SCREEN_LOGO_CONTENT_DESCRIPTION = "Splash Logo"
+const val SplashScreenTestTag = "SplashScreenTestTag"

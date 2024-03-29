@@ -92,7 +92,7 @@ fun CompletedChallengesScreen(
     when (uiState) {
         is CompletedChallengesUiState.Loading -> LoadingScreen()
         is CompletedChallengesUiState.Success -> {
-            CompletedChallengesScreenContent(
+            CompletedChallengesSuccessScreenContent(
                 uiState,
                 onCompletedChallengesUiEvent
             )
@@ -107,11 +107,14 @@ fun CompletedChallengesScreen(
 }
 
 @Composable
-fun CompletedChallengesScreenContent(
+fun CompletedChallengesSuccessScreenContent(
     uiState: CompletedChallengesUiState.Success,
     onCompletedChallengesUiEvent: (CompletedChallengesUiEvent) -> Unit
 ) {
-    Column(Modifier.fillMaxSize()) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .testTag(successScreenTesTag)) {
         CompletedChallengesScreenTitle(uiState)
 
         ChallengesList(
@@ -168,6 +171,7 @@ private fun ColumnScope.ChallengesList(
 private fun ColumnScope.BottomLoadingIndicator() {
     CircularProgressIndicator(
         modifier = Modifier
+            .testTag(bottomLoadingIndicatorTestTag)
             .size(70.dp)
             .padding(dimensionResource(id = R.dimen.default_padding))
             .align(Alignment.CenterHorizontally),
@@ -220,5 +224,7 @@ private fun CompletedChallenge(
 }
 
 const val screenTitleTestTag = "screenTitleTestTag"
+const val successScreenTesTag = "successScreenTesTag"
 const val challengesListTestTag = "challengesListTestTag"
 const val challengeItemTestTag = "challengeItemTestTag"
+const val bottomLoadingIndicatorTestTag = "bottomLoadingIndicatorTestTag"
