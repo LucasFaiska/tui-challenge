@@ -26,6 +26,12 @@ jobs:
         run: |
           chmod +x ./gradlew
 
-      - name: Build and run tests
-        run: ./gradlew app:test
+      - name: Build and run tests in data module
+        run: ./gradlew :data:testDebugUnitTest
+
+      - name: Build and run tests in domain module
+        run: ./gradlew :domain:testDebugUnitTest
+
+      - name: Build and run tests in app module
+        run: ./gradlew :app:testDebugUnitTes
 
